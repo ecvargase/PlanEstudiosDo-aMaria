@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campamento Base - Artes Visuales Javeriana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Nunito', sans-serif; background-color: #FAF7F2; color: #3A403C; margin: 0; padding: 0; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Lora', serif; }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAF7F2; }
+        ::-webkit-scrollbar-thumb { background: #D98A6C; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C07052; }
+
+        .semester-btn, .prep-tab-btn, .main-nav-btn { transition: all 0.3s ease; }
+        
+        .semester-btn.active {
+            background-color: #2C332F; color: #FAF7F2;
+            transform: scale(1.02); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-color: #2C332F;
+        }
+        
+        .prep-tab-active { background-color: #D98A6C; color: white; border-color: #D98A6C; font-weight: bold; }
+        .prep-tab-inactive { background-color: transparent; color: #5C6661; border-color: #D0C9BE; }
+        
+        .main-nav-btn {
+            border-bottom: 4px solid transparent;
+        }
+        .main-nav-btn.active {
+            border-bottom-color: #D98A6C;
+            color: #2C332F;
+            font-weight: 700;
+        }
+
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Estilos para el planificador semanal */
+        .time-slot {
+            transition: all 0.2s;
+        }
+        .time-slot:hover { background-color: #EAE1D3; cursor: pointer; }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#D98A6C] selection:text-white flex flex-col min-h-screen">
+
+    <header class="bg-[#EAE1D3] pt-12 pb-8 px-6 lg:px-12">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <div class="text-[#D98A6C] font-bold text-sm tracking-widest uppercase mb-2">✧ Pontificia Universidad Javeriana - Bogotá</div>
+                <h1 class="text-3xl md:text-4xl font-bold text-[#2C332F] leading-tight font-serif">Tu Campamento Base: Artes Visuales</h1>
+            </div>
+            <div class="mt-4 md:mt-0 text-right hidden md:block">
+                <span class="bg-[#A3B1A6] text-white px-4 py-2 rounded-full text-sm font-bold shadow-sm">Plan Pre-Semestre Activo</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-white border-b border-[#D0C9BE] sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 flex overflow-x-auto hide-scrollbar">
+            <button onclick="switchMainView('mapa')" id="nav-mapa" class="main-nav-btn active whitespace-nowrap px-6 py-4 text-[#5C6661] font-semibold hover:text-[#2C332F]">
+                🗺️ El Mapa (10 Semestres)
+            </button>
+            <button onclick="switchMainView('entrenamiento')" id="nav-entrenamiento" class="main-nav-btn whitespace-nowrap px-6 py-4 text-[#5C6661] font-semibold hover:text-[#2C332F]">
+                🏃‍♀️ Entrenamiento (2 Meses)
+            </button>
+            <button onclick="switchMainView('habitos')" id="nav-habitos" class="main-nav-btn whitespace-nowrap px-6 py-4 text-[#5C6661] font-semibold hover:text-[#2C332F]">
+                🧠 Hábitos & Metodología
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow bg-[#FAF7F2] pb-20">
+
+        <!-- VISTA 1: EL MAPA (10 SEMESTRES) -->
+        <section id="view-mapa" class="view-section fade-in max-w-6xl mx-auto px-6 py-12">
+            <div class="mb-10 max-w-3xl">
+                <h2 class="text-3xl font-bold mb-4 text-[#2C332F] font-serif">La Visión a Largo Plazo</h2>
+                <p class="text-lg text-[#5C6661]">
+                    Los primeros 4 semestres son intensos porque te dan las herramientas (Fundamentación). Pero a partir del 5to, tú eliges tu propio énfasis (Plástica, Audiovisual o Gráfica) y todo se vuelve creación libre.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-4 space-y-6">
+                    <div class="bg-white p-4 rounded-xl border border-[#EAE1D3] shadow-sm">
+                        <h3 class="text-xs font-bold text-[#A3B1A6] uppercase tracking-wider mb-3">Etapa 1: Fundamentación</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="showSemester(1)" id="sem-btn-1" class="semester-btn active bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">Semestre 1</button>
+                            <button onclick="showSemester(2)" id="sem-btn-2" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">Semestre 2</button>
+                            <button onclick="showSemester(3)" id="sem-btn-3" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">Semestre 3</button>
+                            <button onclick="showSemester(4)" id="sem-btn-4" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">Semestre 4</button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-[#EAE1D3] shadow-sm">
+                        <h3 class="text-xs font-bold text-[#D98A6C] uppercase tracking-wider mb-3">Etapa 2: Énfasis & Proyecto</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="showSemester(5)" id="sem-btn-5" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">S5</button>
+                            <button onclick="showSemester(6)" id="sem-btn-6" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">S6</button>
+                            <button onclick="showSemester(7)" id="sem-btn-7" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">S7</button>
+                            <button onclick="showSemester(8)" id="sem-btn-8" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">S8</button>
+                            <button onclick="showSemester(9)" id="sem-btn-9" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">S9</button>
+                            <button onclick="showSemester(10)" id="sem-btn-10" class="semester-btn bg-white border border-[#D0C9BE] text-[#3A403C] py-2 rounded font-bold text-sm">S10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-[#EAE1D3] p-6 lg:p-8 min-h-[400px]" id="semester-detail-panel">
+                    <!-- JS inyecta contenido -->
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white p-6 rounded-2xl shadow-sm border border-[#EAE1D3]">
+                <h3 class="text-xl font-bold mb-2 text-center text-[#2C332F]">La Evolución de tu Autonomía</h3>
+                <p class="text-center text-sm text-[#5C6661] mb-4">Nota cómo las materias obligatorias disminuyen mientras tu libertad creativa aumenta año tras año.</p>
+                <div class="chart-container" style="height: 250px;">
+                    <canvas id="evolutionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISTA 2: ENTRENAMIENTO PREVIO (2 MESES) -->
+        <section id="view-entrenamiento" class="view-section hidden max-w-6xl mx-auto px-6 py-12">
+            <div class="mb-10 max-w-3xl">
+                <h2 class="text-3xl font-bold mb-4 text-[#2C332F] font-serif">Tu Plan de 8 Semanas (Junio y Julio)</h2>
+                <p class="text-lg text-[#5C6661]">
+                    El objetivo de estos dos meses <strong>NO</strong> es estudiar ni adelantar lecturas. Es acostumbrar tu cerebro y tus manos a la dinámica de la universidad usando a Bogotá como laboratorio. Selecciona una materia del 1er Semestre:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div class="lg:col-span-1 flex flex-col gap-2" id="prep-tabs-nav">
+                    <button onclick="changePrep('dibujo')" data-target="dibujo" class="prep-tab-btn prep-tab-active text-left px-4 py-3 rounded-lg border-2 transition-colors font-bold shadow-sm">Dibujo I</button>
+                    <button onclick="changePrep('historia')" data-target="historia" class="prep-tab-btn prep-tab-inactive text-left px-4 py-3 rounded-lg border-2 transition-colors">Hitos del Arte I</button>
+                    <button onclick="changePrep('estudios')" data-target="estudios" class="prep-tab-btn prep-tab-inactive text-left px-4 py-3 rounded-lg border-2 transition-colors">Estudios Visuales I</button>
+                    <button onclick="changePrep('tridi')" data-target="tridi" class="prep-tab-btn prep-tab-inactive text-left px-4 py-3 rounded-lg border-2 transition-colors">Introducción a la Tridimensionalidad</button>
+                    <button onclick="changePrep('color')" data-target="color" class="prep-tab-btn prep-tab-inactive text-left px-4 py-3 rounded-lg border-2 transition-colors">Introducción al Color</button>
+                    <button onclick="changePrep('imagen')" data-target="imagen" class="prep-tab-btn prep-tab-inactive text-left px-4 py-3 rounded-lg border-2 transition-colors">Imagen Asistida por Computador</button>
+                    <button onclick="changePrep('multimedia')" data-target="multimedia" class="prep-tab-btn prep-tab-inactive text-left px-4 py-3 rounded-lg border-2 transition-colors">Introducción a Multimedia</button>
+                </div>
+
+                <div class="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-[#EAE1D3] p-6 lg:p-8 min-h-[450px]" id="prep-content-panel">
+                    <!-- JS inyecta contenido -->
+                </div>
+            </div>
+        </section>
+
+        <!-- VISTA 3: HÁBITOS & METODOLOGÍA -->
+        <section id="view-habitos" class="view-section hidden max-w-6xl mx-auto px-6 py-12">
+            <div class="mb-10 max-w-3xl">
+                <h2 class="text-3xl font-bold mb-4 text-[#2C332F] font-serif">Tu Caja de Herramientas Diaria</h2>
+                <p class="text-lg text-[#5C6661]">
+                    Estrategias diseñadas para mentes visuales. Siéntete libre de ignorar los métodos tradicionales de estudio que nunca te han funcionado.
+                </p>
+            </div>
+
+            <!-- Reglas de Oro -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl border-t-4 border-[#D98A6C] shadow-sm">
+                    <h3 class="font-bold text-lg mb-2">🎨 Visualiza, no memorices</h3>
+                    <p class="text-sm text-[#5C6661]">Dibuja todo lo que leas. Si lees sobre un movimiento artístico, haz un cómic feo. Convierte las palabras en imágenes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-t-4 border-[#A3B1A6] shadow-sm">
+                    <h3 class="font-bold text-lg mb-2">⏱️ El "Micro-Trazo" (25 min)</h3>
+                    <p class="text-sm text-[#5C6661]">Jamás te sientes 2 horas seguidas. Pon un timer de 25 minutos de enfoque absoluto, y luego 5 minutos para estirar el cuerpo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-t-4 border-[#E2C792] shadow-sm">
+                    <h3 class="font-bold text-lg mb-2">🚧 Proceso > Perfección</h3>
+                    <p class="text-sm text-[#5C6661]">No entregues obras maestras al principio. La nota en 1er semestre va a la bitácora rayada, al proceso, a los errores documentados.</p>
+                </div>
+            </div>
+
+            <!-- Balance de Energía Chart -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white border border-[#EAE1D3] shadow-sm p-8 rounded-2xl mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#2C332F]">Tu Balance de Energía Semanal</h3>
+                    <p class="text-[#5C6661] mb-6">Mucha gente que "no es buena estudiando" cree que estudiar es solo leer. En Artes Visuales, estudiar se ve diferente:</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><span class="text-[#D98A6C] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Creación (40%):</strong> Bocetar, manchar, moldear, usar la cámara.</div></li>
+                        <li class="flex items-start"><span class="text-[#A3B1A6] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Inmersión en Bogotá (30%):</strong> Ir a exposiciones en San Felipe, ver arquitectura en el centro histórico.</div></li>
+                        <li class="flex items-start"><span class="text-[#E2C792] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Consumo Visual (20%):</strong> Ver cine, documentales de arte, videos en YouTube.</div></li>
+                        <li class="flex items-start"><span class="text-[#8DA0A6] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Lecturas Ligeras (10%):</strong> Textos leídos en bloques de 15 minutos, con esfero en mano.</div></li>
+                    </ul>
+                </div>
+                <div class="bg-[#FAF7F2] p-4 rounded-xl">
+                    <div class="chart-container">
+                        <canvas id="energyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NUEVA SECCIÓN: MANEJO DE LA FRUSTRACIÓN -->
+            <div class="bg-white p-6 rounded-xl border border-[#EAE1D3] shadow-sm mb-8">
+                <h3 class="text-xl font-bold mb-2 text-[#2C332F]">🛡️ Manejo de la Frustración (Resiliencia Creativa)</h3>
+                <p class="text-[#5C6661] mb-4">En arte vas a fracasar muchas veces. Es parte del proceso. Aquí tienes 3 anclas para cuando sientas que "no sirves para esto":</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-[#FAF7F2] p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">💩</div>
+                        <h4 class="font-bold">La obra fea es data</h4>
+                        <p class="text-xs">Cada intento fallido te dice qué NO funciona. Documenta tus fracasos en la bitácora.</p>
+                    </div>
+                    <div class="bg-[#FAF7F2] p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">⏸️</div>
+                        <h4 class="font-bold">Pausa activa</h4>
+                        <p class="text-xs">Cuando te bloquees, sal a caminar 10 minutos sin celular. La solución suele llegar en movimiento.</p>
+                    </div>
+                    <div class="bg-[#FAF7F2] p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">👩‍🎨</div>
+                        <h4 class="font-bold">Referentes imperfectos</h4>
+                        <p class="text-xs">Busca artistas que hablen de sus procesos fallidos. Verás que es normal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ritual Anti-Fricción (mejorado con checkboxes nativos) -->
+            <div class="max-w-3xl mx-auto bg-[#2C332F] rounded-2xl p-8 shadow-lg">
+                <h2 class="text-2xl font-bold mb-2 text-[#FAF7F2] font-serif text-center">Tu Ritual Anti-Fricción</h2>
+                <p class="text-center text-[#A3B1A6] mb-8 text-sm">Marca cada paso antes de tu bloque de 25 minutos:</p>
+                <div id="ritual-list" class="space-y-3"></div>
+                <div id="success-message" class="hidden mt-6 bg-[#A3B1A6] text-white p-4 rounded-lg text-center font-bold fade-in">
+                    ✓ ¡Entorno preparado! Pon el cronómetro de 25 min y a crear.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 bg-[#EAE1D3] text-[#5C6661] text-sm border-t border-[#D0C9BE]">
+        <p>♡ Diseñado especialmente para mentes visuales a sus 33 años.</p>
+    </footer>
+
+    <script>
+        // ---------- 1. MAIN NAVIGATION ----------
+        function switchMainView(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('fade-in');
+            });
+            const target = document.getElementById(`view-${viewId}`);
+            target.classList.remove('hidden');
+            target.classList.add('fade-in');
+
+            document.querySelectorAll('.main-nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`nav-${viewId}`).classList.add('active');
+
+            // Inicializar gráficos solo si la vista lo requiere y el canvas existe y es visible
+            if (viewId === 'mapa') {
+                initEvolutionChart();
+            }
+            if (viewId === 'habitos') {
+                initEnergyChart();
+                renderWeeklyPlanner(); // El planificador se dibuja cada vez que se muestra la vista
+            }
+        }
+
+        // ---------- 2. CURRÍCULO ACTUALIZADO (Semestre 1 según documento) ----------
+        const curriculum = {
+            1: { title: "Semestre 1", color: "#A3B1A6", subjects: [
+                { name: "Dibujo I", desc: "Fundamentos del dibujo, línea, mancha y observación.", credits: 3 },
+                { name: "Estudios Visuales I", desc: "Introducción a la cultura visual y la mirada crítica.", credits: 2 },
+                { name: "Hitos de la Historia del Arte I", desc: "Arte prehistórico, antiguo y medieval.", credits: 3 },
+                { name: "Apreciación del Arte I", desc: "Análisis y disfrute de obras artísticas.", credits: 2 },
+                { name: "Introducción a la Tridimensionalidad", desc: "Volumen, espacio y materiales escultóricos.", credits: 3 },
+                { name: "Introducción al Color", desc: "Teoría del color y su aplicación práctica.", credits: 2 },
+                { name: "Imagen Asistida por Computador", desc: "Herramientas digitales para la imagen fija.", credits: 2 },
+                { name: "Introducción a Multimedia", desc: "Narrativas digitales y arte electrónico.", credits: 3 }
+            ] },
+            2: { title: "Semestre 2", color: "#A3B1A6", subjects: [{ name: "Dibujo II, espacialidad", desc: "Perspectiva." }, { name: "Fotografía básica", desc: "La luz como material." }, { name: "Video básico", desc: "Imagen en movimiento." }, { name: "Fundamentos de bidimensionalidad", desc: "Pintura y color." }, { name: "Estética antigua", desc: "Filosofía de la belleza." }, { name: "Apreciación artes visuales", desc: "Análisis crítico." }]},
+            3: { title: "Semestre 3", color: "#A3B1A6", subjects: [{ name: "Dibujo III, figura humana", desc: "Anatomía ósea y muscular." }, { name: "Fotografía profundización", desc: "Revelado y técnicas." }, { name: "Historia del Arte Moderno", desc: "Impresionismo y Vanguardias." }, { name: "Taller Tridimensionalidad II", desc: "Escultura en nuevos materiales." }, { name: "Institucional I", desc: "Humanidades Javeriana." }]},
+            4: { title: "Semestre 4", color: "#A3B1A6", subjects: [{ name: "Dibujo IV, cuerpo expresivo", desc: "Expresividad anatómica." }, { name: "Fotografía avanzada", desc: "Creación de series fotográficas." }, { name: "Historia Arte Contemporáneo", desc: "El arte conceptual de hoy." }, { name: "Teoría del Arte", desc: "Textos críticos de soporte." }, { name: "Institucional II", desc: "Humanidades." }]},
+            5: { title: "Semestre 5 (Inicio Énfasis)", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis I", desc: "Tú eliges: Plástica (pintura/escultura), Audiovisual (cine/foto) o Gráfica (grabado/ilustración)." }, { name: "Electivas de Línea", desc: "Materias especializadas de tu rama." }, { name: "Seminario Investigación I", desc: "Cómo armar un proyecto grande." }, { name: "Estética Contemporánea", desc: "Filosofía del S. XXI." }]},
+            6: { title: "Semestre 6", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis II", desc: "Proyectos más complejos y libres." }, { name: "Electivas Interdisciplinares", desc: "Ver materias en Arquitectura o Diseño." }, { name: "Gestión Cultural", desc: "Cómo funciona el mercado del arte." }]},
+            7: { title: "Semestre 7", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis III", desc: "Tutorías de tu propia obra personal." }, { name: "Seminario Investigación II", desc: "Perfil de proyecto de grado." }, { name: "Electivas de Contexto", desc: "Teoría de apoyo." }]},
+            8: { title: "Semestre 8", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis IV", desc: "Obra final del ciclo." }, { name: "Diseño de Portafolio", desc: "Preparación para el mundo real." }, { name: "Museografía", desc: "Curaduría y montaje de exposiciones físicas." }]},
+            9: { title: "Semestre 9", color: "#2C332F", subjects: [{ name: "Proyecto de Grado I", desc: "Dedicación exclusiva a tu tesis/exposición personal." }, { name: "Práctica Profesional I", desc: "Trabajo real en galerías, museos o estudios en Bogotá." }]},
+            10: { title: "Semestre 10", color: "#2C332F", subjects: [{ name: "Proyecto de Grado II", desc: "Escritura de documento y exhibición final." }, { name: "Práctica Profesional II", desc: "Inmersión laboral total." }]}
+        };
+
+        const semDetailPanel = document.getElementById('semester-detail-panel');
+        const semButtons = document.querySelectorAll('.semester-btn');
+
+        function showSemester(num) {
+            semButtons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`sem-btn-${num}`).classList.add('active');
+            const data = curriculum[num];
+            let html = `
+                <div class="fade-in">
+                    <h3 class="text-3xl font-bold font-serif text-[#2C332F] mb-6 border-b-2 border-[#EAE1D3] pb-2" style="border-bottom-color: ${data.color}">
+                        ${data.title}
+                    </h3>
+                    <div class="space-y-3">
+                        ${data.subjects.map(sub => `
+                            <div class="p-3 bg-[#FAF7F2] rounded border border-[#EAE1D3] hover:border-[#A3B1A6] transition-colors">
+                                <h4 class="font-bold text-[#3A403C]">${sub.name} ${sub.credits ? `(créditos: ${sub.credits})` : ''}</h4>
+                                <p class="text-sm text-[#5C6661]">${sub.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            semDetailPanel.innerHTML = html;
+        }
+        showSemester(1);
+
+        // ---------- 3. PREPARACIÓN PRE-SEMESTRE (Adaptado a las nuevas materias) ----------
+        const prepData = {
+            dibujo: { title: "Dibujo I", icon: "✏️", goal: "Quitarle el miedo a la hoja en blanco.", plan: [
+                { week: "Semanas 1-2", task: "<strong>Profanar la Bitácora:</strong> Ensúciala con café, pega recortes, raya sin sentido." },
+                { week: "Semanas 3-5", task: "<strong>Bocetos en movimiento:</strong> Dibuja gente en cafés en máximo 1 minuto." },
+                { week: "Semanas 6-8", task: "<strong>Texturas ciegas:</strong> Dibuja objetos mirando el objeto, no el papel." }
+            ] },
+            historia: { title: "Hitos del Arte I", icon: "🏛️", goal: "Absorber la narrativa visual sin textos densos.", plan: [
+                { week: "Semanas 1-4", task: "<strong>YouTube histórico:</strong> Mira canales como 'Smarthistory'." },
+                { week: "Semanas 5-6", task: "<strong>El Muro Visual:</strong> Pega imágenes en orden cronológico." },
+                { week: "Semanas 7-8", task: "<strong>Visita local:</strong> Museo del Oro y Museo Nacional." }
+            ] },
+            estudios: { title: "Estudios Visuales I", icon: "👁️", goal: "Desarrollar la mirada crítica.", plan: [
+                { week: "Semanas 1-3", task: "<strong>Álbum de imágenes:</strong> Guarda 20 imágenes que te llamen la atención (publicidad, arte, memes)." },
+                { week: "Semanas 4-6", task: "<strong>Ejercicio de contraste:</strong> Compara una obra clásica con un comercial actual." },
+                { week: "Semanas 7-8", task: "<strong>Diario visual:</strong> Escribe por qué una imagen te gusta o te incomoda." }
+            ] },
+            tridi: { title: "Introducción a la Tridimensionalidad", icon: "🧱", goal: "Despertar el sentido táctil.", plan: [
+                { week: "Semanas 1-3", task: "<strong>Origami arquitectónico:</strong> Dobla papel para que se sostenga solo." },
+                { week: "Semanas 4-8", task: "<strong>Plastilina a ciegas:</strong> Moldea formas mientras ves TV." }
+            ] },
+            color: { title: "Introducción al Color", icon: "🌈", goal: "Jugar con la teoría del color sin presión.", plan: [
+                { week: "Semanas 1-2", task: "<strong>Paletas de la calle:</strong> Toma fotos a fachadas de colores en Bogotá." },
+                { week: "Semanas 3-5", task: "<strong>Mezcla libre:</strong> Compra témperas y mezcla colores sin objetivo." },
+                { week: "Semanas 6-8", task: "<strong>Círculo cromático con plastilina:</strong> Construye el círculo con bolitas de plastilina." }
+            ] },
+            imagen: { title: "Imagen Asistida por Computador", icon: "💻", goal: "Perder el miedo al software.", plan: [
+                { week: "Semanas 1-4", task: "<strong>Instalación:</strong> Descarga GIMP o Krita, ábrelo y guarda un archivo." },
+                { week: "Semanas 5-8", task: "<strong>El botón equivocado:</strong> Aplica filtros al azar, explora sin miedo." }
+            ] },
+            multimedia: { title: "Introducción a Multimedia", icon: "🎬", goal: "Entender narrativas digitales.", plan: [
+                { week: "Semanas 1-3", task: "<strong>Mini-tutoriales:</strong> Mira videos de 'video mapping' o 'stop motion'." },
+                { week: "Semanas 4-8", task: "<strong>Crea un GIF:</strong> Con tu celular, haz un GIF de 3 segundos." }
+            ] }
+        };
+
+        const prepDetailPanel = document.getElementById('prep-content-panel');
+        const prepButtons = document.querySelectorAll('.prep-tab-btn');
+
+        function changePrep(key) {
+            prepButtons.forEach(btn => {
+                if (btn.dataset.target === key) btn.classList.replace('prep-tab-inactive', 'prep-tab-active');
+                else btn.classList.replace('prep-tab-active', 'prep-tab-inactive');
+            });
+            const data = prepData[key];
+            let html = `
+                <div class="fade-in">
+                    <div class="flex items-center mb-6 border-b border-[#EAE1D3] pb-4">
+                        <span class="text-4xl mr-4">${data.icon}</span>
+                        <div><h3 class="text-2xl font-bold font-serif text-[#2C332F]">${data.title}</h3><p class="text-sm text-[#D98A6C] font-bold uppercase tracking-wider mt-1">Plan de Verano</p></div>
+                    </div>
+                    <div class="bg-[#FAF7F2] p-4 rounded-lg border-l-4 border-[#A3B1A6] mb-8 text-[#5C6661]"><strong>Tu único objetivo:</strong> ${data.goal}</div>
+                    <div class="space-y-6">${data.plan.map(step => `<div class="flex"><div class="w-32 flex-shrink-0 pt-1"><span class="bg-[#A3B1A6] text-white text-xs font-bold px-3 py-1.5 rounded-full">${step.week}</span></div><div class="text-[#3A403C] text-sm md:text-base border-l-2 border-[#D0C9BE] pl-5 pb-2">${step.task}</div></div>`).join('')}</div>
+                </div>
+            `;
+            prepDetailPanel.innerHTML = html;
+        }
+        changePrep('dibujo');
+
+        // ---------- 4. GRÁFICOS (con inicialización diferida) ----------
+        let evoChart = null, energyChart = null;
+
+        function initEvolutionChart() {
+            const canvas = document.getElementById('evolutionChart');
+            if (!canvas) return;
+            if (evoChart) evoChart.destroy();
+            const ctx = canvas.getContext('2d');
+            evoChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['S1','S2','S3','S4','S5','S6','S7','S8','S9','S10'],
+                    datasets: [
+                        { label: 'Materias Obligatorias', data: [100,100,90,80,40,30,20,10,0,0], borderColor: '#A3B1A6', backgroundColor: 'rgba(163,177,166,0.1)', fill: true, tension: 0.4 },
+                        { label: 'Taller Propio/Libertad', data: [0,0,10,20,60,70,80,90,100,100], borderColor: '#D98A6C', backgroundColor: 'rgba(217,138,108,0.1)', fill: true, tension: 0.4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: "'Nunito', sans-serif" } } } }, scales: { y: { max: 100, ticks: { callback: (val) => val + "%" } } } }
+            });
+        }
+
+        function initEnergyChart() {
+            const canvas = document.getElementById('energyChart');
+            if (!canvas) return;
+            if (energyChart) energyChart.destroy();
+            const ctx = canvas.getContext('2d');
+            energyChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Creación Física', 'Inmersión Ciudad', 'Consumo Visual', 'Lecturas Cortas'],
+                    datasets: [{ data: [40,30,20,10], backgroundColor: ['#D98A6C','#A3B1A6','#E2C792','#8DA0A6'], borderWidth: 0 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family: "'Nunito', sans-serif" } } } }, cutout: '65%' }
+            });
+        }
+
+        // ---------- 5. PLANIFICADOR SEMANAL ----------
+        let plannerData = {
+            lunes: ['🎨 Creación', '📖 Lectura ligera', '👀 Consumo visual', '🏙️ Inmersión'],
+            martes: ['🎨 Creación', '🏙️ Inmersión', '📖 Lectura ligera', '🎨 Creación'],
+            miercoles: ['👀 Consumo visual', '🎨 Creación', '🏙️ Inmersión', '📖 Lectura ligera'],
+            jueves: ['📖 Lectura ligera', '🎨 Creación', '👀 Consumo visual', '🎨 Creación'],
+            viernes: ['🏙️ Inmersión', '🎨 Creación', '👀 Consumo visual', '📖 Lectura ligera'],
+            sabado: ['🎨 Creación', '🏙️ Inmersión', '🎨 Creación', 'Descanso'],
+            domingo: ['Descanso', '👀 Consumo visual', '📖 Lectura ligera', 'Planificar semana']
+        };
+
+        const actividades = ['🎨 Creación', '🏙️ Inmersión', '👀 Consumo visual', '📖 Lectura ligera', 'Descanso', 'Planificar semana'];
+
+        function renderWeeklyPlanner() {
+            const container = document.getElementById('weekly-planner');
+            if (!container) return;
+            let html = '<table class="w-full border-collapse text-sm"><thead><tr class="bg-[#EAE1D3]"><th class="p-2 border">Día</th><th class="p-2 border">Mañana (9-12)</th><th class="p-2 border">Tarde (14-17)</th><th class="p-2 border">Noche (19-21)</th></tr></thead><tbody>';
+            const days = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+            days.forEach(day => {
+                const slots = plannerData[day];
+                html += `<tr><td class="p-2 border font-bold capitalize">${day}</td>`;
+                for (let i = 0; i < 3; i++) {
+                    const currentAct = slots[i];
+                    html += `<td class="p-2 border time-slot" onclick="editSlot('${day}', ${i})"><span class="inline-block px-2 py-1 rounded-full bg-[#FAF7F2]">${currentAct}</span></td>`;
+                }
+                html += `</tr>`;
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+            // Guardar en localStorage
+            localStorage.setItem('plannerData', JSON.stringify(plannerData));
+        }
+
+        window.editSlot = function(day, slotIndex) {
+            const newAct = prompt(`Cambiar actividad para ${day} (slot ${slotIndex+1}):\nOpciones: ${actividades.join(', ')}`, plannerData[day][slotIndex]);
+            if (newAct && actividades.some(a => a === newAct)) {
+                plannerData[day][slotIndex] = newAct;
+                renderWeeklyPlanner();
+            } else if (newAct) alert("Actividad no reconocida. Elige entre: " + actividades.join(', '));
+        }
+
+        function resetPlanner() {
+            plannerData = {
+                lunes: ['🎨 Creación', '📖 Lectura ligera', '👀 Consumo visual', '🏙️ Inmersión'],
+                martes: ['🎨 Creación', '🏙️ Inmersión', '📖 Lectura ligera', '🎨 Creación'],
+                miercoles: ['👀 Consumo visual', '🎨 Creación', '🏙️ Inmersión', '📖 Lectura ligera'],
+                jueves: ['📖 Lectura ligera', '🎨 Creación', '👀 Consumo visual', '🎨 Creación'],
+                viernes: ['🏙️ Inmersión', '🎨 Creación', '👀 Consumo visual', '📖 Lectura ligera'],
+                sabado: ['🎨 Creación', '🏙️ Inmersión', '🎨 Creación', 'Descanso'],
+                domingo: ['Descanso', '👀 Consumo visual', '📖 Lectura ligera', 'Planificar semana']
+            };
+            renderWeeklyPlanner();
+        }
+
+        // Cargar planner guardado si existe
+        function loadPlannerFromStorage() {
+            const saved = localStorage.getItem('plannerData');
+            if (saved) {
+                try {
+                    plannerData = JSON.parse(saved);
+                } catch(e) {}
+            }
+        }
+
+        // ---------- 6. RITUAL INTERACTIVO (con checkbox nativos) ----------
+        const ritualItems = [
+            "Bebida lista (café, té o agua) en el escritorio.",
+            "Celular en 'No molestar' y boca abajo, lejos de la mano.",
+            "Bitácora abierta y lápiz en mano.",
+            "Sé exactamente qué haré en estos 25 min (ej. 'rayar este papel').",
+            "Cronómetro de 25 minutos encendido."
+        ];
+
+        function renderRitual() {
+            const container = document.getElementById('ritual-list');
+            if (!container) return;
+            container.innerHTML = '';
+            ritualItems.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center p-3 border-b border-[#4A524D] last:border-0';
+                div.innerHTML = `
+                    <label class="flex items-center cursor-pointer w-full">
+                        <input type="checkbox" class="ritual-checkbox w-5 h-5 mr-4 accent-[#D98A6C]">
+                        <span class="text-[#FAF7F2] select-none">${item}</span>
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+            const successMsgDiv = document.getElementById('success-message');
+            const checkboxes = document.querySelectorAll('.ritual-checkbox');
+            function updateSuccess() {
+                const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+                successMsgDiv.classList.toggle('hidden', !allChecked);
+            }
+            checkboxes.forEach(cb => cb.addEventListener('change', updateSuccess));
+            updateSuccess();
+        }
+
+        // ---------- 7. INICIALIZACIÓN GENERAL ----------
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPlannerFromStorage();
+            renderRitual();
+            // Inicializar gráficos solo para la vista activa por defecto (mapa)
+            initEvolutionChart();
+            // energyChart se dibujará cuando se cambie a hábitos
+            // pero si por casualidad la vista activa es hábitos al cargar (no lo es por defecto), la función switchMainView lo llamará.
+            // Aseguramos que el planificador se pinte solo si la vista está activa (no lo está al inicio)
+        });
+    </script>
+</body>
+</html>
