@@ -1,35 +1,38 @@
-# Nombre de nuestro workflow
-name: DoñaMariaDeploy
+name: Deploy Static Page
 
-# Eventos que activan el workflow: cuando haya un 'push' en la rama 'main'
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]  # O el nombre de tu rama principal
+  pull_request:
+    branches: [ main ]
 
-# Definición de los trabajos (jobs) a ejecutar
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  # Un trabajo llamado 'deploy'
   deploy:
-    # El tipo de máquina virtual que usará GitHub Actions
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
-    # Permisos para que el workflow pueda escribir en el repositorio y desplegar
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
-    # Lista de pasos a ejecutar
     steps:
-      # 1. Clona el código de tu repositorio en la máquina virtual
-      - name: Obtener el código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Despliega el sitio usando la acción oficial
-      - name: Desplegar a GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          # Usa el token automático que GitHub genera
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # La carpeta donde están los archivos de tu sitio
-          publish_dir: ./
+          path: '.'  # Sube el directorio raíz
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
