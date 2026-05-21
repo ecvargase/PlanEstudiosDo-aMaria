@@ -196,8 +196,13 @@
     </main>
 
     <footer class="text-center py-6 bg-[#EAE1D3] text-[#5C6661] text-sm border-t border-[#D0C9BE]">
-        <p>♡ Diseñado especialmente para mentes visuales a sus 33 años.</p>
+        <p id="love-text" style="user-select:none;cursor:default;">♡ Diseñado especialmente para Maria Alejandra. Te amo.</p>
     </footer>
+
+    <!-- Easter egg overlay -->
+    <div id="easter-egg-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.65);z-index:9999;">
+        <img src="app-icon.png" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:260px;max-height:260px;border-radius:24px;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+    </div>
 
     <script>
         // ---------- 1. MAIN NAVIGATION ----------
@@ -450,6 +455,16 @@
             checkboxes.forEach(cb => cb.addEventListener('change', update));
             update();
         }
+
+        // ---------- 6. EASTER EGG ----------
+        function showEasterEgg() {
+            var overlay = document.getElementById('easter-egg-overlay');
+            overlay.style.display = 'block';
+            setTimeout(function() { overlay.style.display = 'none'; }, 2000);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('love-text').addEventListener('dblclick', showEasterEgg);
+        });
 
         // Inicialización
         window.addEventListener('DOMContentLoaded', () => {
