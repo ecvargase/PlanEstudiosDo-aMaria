@@ -84,15 +84,13 @@
 </head>
 <body class="antialiased selection:bg-[#D98A6C] selection:text-white flex flex-col min-h-screen">
 
-    <header class="bg-[#EAE1D3] pt-12 pb-8 px-6 lg:px-12">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div>
-                <div class="text-[#D98A6C] font-bold text-sm tracking-widest uppercase mb-2">✧ Pontificia Universidad Javeriana - Bogotá</div>
-                <h1 class="text-3xl md:text-4xl font-bold text-[#2C332F] leading-tight font-serif">Tu Campamento Base: Artes Visuales</h1>
-            </div>
-            <div class="mt-4 md:mt-0 text-right hidden md:block">
-                <span class="bg-[#A3B1A6] text-white px-4 py-2 rounded-full text-sm font-bold shadow-sm">Plan Pre-Semestre Activo</span>
-            </div>
+    <header class="bg-[#EAE1D3] py-16 px-6 lg:px-12 border-b-4 border-[#D98A6C]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-[#D98A6C] font-bold text-sm tracking-widest uppercase mb-3">&#10022; Preparación Pre-Semestre (Agosto) - Javeriana Sede Bogotá</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#2C332F] leading-tight">Campamento Base:<br>8 Semanas para Entrenar el Ojo</h1>
+            <p class="text-xl max-w-3xl leading-relaxed text-[#4A524D]">
+                Tienes dos meses antes de empezar en la Javeriana. Empezar a los 33 años es empezar con madurez. Este no es momento para leer libros densos ni estresarte. Es el momento para <strong>crear el hábito, perder el miedo y usar a Bogotá como tu laboratorio</strong>. Vamos a construir cimientos sólidos para llegar a agosto con confianza.
+            </p>
         </div>
     </header>
 
@@ -112,7 +110,7 @@
 
     <main class="flex-grow bg-[#FAF7F2] pb-20">
 
-        <!-- VISTA 1: EL MAPA (10 SEMESTRES) (igual, sin cambios) -->
+        <!-- VISTA 1: EL MAPA (10 SEMESTRES) -->
         <section id="view-mapa" class="view-section fade-in max-w-6xl mx-auto px-6 py-12">
             <div class="mb-10 max-w-3xl">
                 <h2 class="text-3xl font-bold mb-4 text-[#2C332F] font-serif">La Visión a Largo Plazo</h2>
@@ -174,17 +172,32 @@
             </div>
         </section>
 
-        <!-- VISTA 3: HÁBITOS & METODOLOGÍA (se mantiene igual, pero por brevedad lo dejamos con su contenido original) -->
+        <!-- VISTA 3: HÁBITOS & METODOLOGÍA -->
         <section id="view-habitos" class="view-section hidden max-w-6xl mx-auto px-6 py-12">
-            <div class="mb-10 max-w-3xl">
-                <h2 class="text-3xl font-bold mb-4 text-[#2C332F] font-serif">Tu Caja de Herramientas Diaria</h2>
-                <p class="text-lg text-[#5C6661]">Estrategias diseñadas para mentes visuales...</p>
+            <div class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-[#2C332F]">Tu Nueva Metodología</h2>
+            <p class="text-lg text-[#5C6661]">
+                Olvida las horas sentada frente a un libro subrayando sin sentido. Para estudiar arte, debes <strong>hacer arte</strong> mientras aprendes. Aquí están tus tres reglas de oro para este semestre:
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-[#EAE1D3] hover:shadow-md transition-shadow">
+                <div class="text-3xl mb-4 text-[#D98A6C]">&#9998;</div>
+                <h3 class="text-xl font-bold mb-2">1. Visualiza, no memorices</h3>
+                <p class="text-[#5C6661]">Si tienes que leer un texto histórico, dibuja un cómic o un mapa mental del texto. Transforma las palabras en imágenes; ese es tu lenguaje natural.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="bg-white p-6 rounded-xl border-t-4 border-[#D98A6C] shadow-sm"><h3 class="font-bold text-lg mb-2">🎨 Visualiza, no memorices</h3><p class="text-sm text-[#5C6661]">Dibuja todo lo que leas. Convierte las palabras en imágenes.</p></div>
-                <div class="bg-white p-6 rounded-xl border-t-4 border-[#A3B1A6] shadow-sm"><h3 class="font-bold text-lg mb-2">⏱️ El "Micro-Trazo" (25 min)</h3><p class="text-sm text-[#5C6661]">Pon timer de 25 min de enfoque absoluto, luego 5 min de pausa.</p></div>
-                <div class="bg-white p-6 rounded-xl border-t-4 border-[#E2C792] shadow-sm"><h3 class="font-bold text-lg mb-2">🚧 Proceso > Perfección</h3><p class="text-sm text-[#5C6661]">La nota en 1er semestre va a la bitácora, al proceso, a los errores documentados.</p></div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-[#EAE1D3] hover:shadow-md transition-shadow">
+                <div class="text-3xl mb-4 text-[#A3B1A6]">&#9201;</div>
+                <h3 class="text-xl font-bold mb-2">2. El Método "Micro-Trazos"</h3>
+                <p class="text-[#5C6661]">No estudies 2 horas seguidas. Usa bloques de 25 minutos de enfoque absoluto, seguidos de 5 minutos de descanso (levantarse, estirar, mirar por la ventana). Evita la frustración.</p>
             </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-[#EAE1D3] hover:shadow-md transition-shadow">
+                <div class="text-3xl mb-4 text-[#D98A6C]">&#10084;</div>
+                <h3 class="text-xl font-bold mb-2">3. Proceso sobre Perfección</h3>
+                <p class="text-[#5C6661]">La universidad (especialmente el 1er semestre) es para equivocarse y explorar. No entregues obras maestras, entrega <strong>procesos de pensamiento</strong> documentados.</p>
+            </div>
+        </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white border border-[#EAE1D3] shadow-sm p-8 rounded-2xl mb-12">
                 <div><h3 class="text-2xl font-bold mb-4 text-[#2C332F]">Tu Balance de Energía Semanal</h3><p class="text-[#5C6661] mb-6">En Artes Visuales, estudiar se ve diferente:</p><ul class="space-y-4"><li class="flex items-start"><span class="text-[#D98A6C] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Creación (40%):</strong> Bocetar, manchar, moldear.</div></li><li class="flex items-start"><span class="text-[#A3B1A6] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Inmersión en Bogotá (30%):</strong> Exposiciones, arquitectura.</div></li><li class="flex items-start"><span class="text-[#E2C792] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Consumo Visual (20%):</strong> Cine, documentales.</div></li><li class="flex items-start"><span class="text-[#8DA0A6] font-bold text-xl mr-3">▶</span><div class="text-sm"><strong class="text-[#2C332F]">Lecturas Ligeras (10%):</strong> Textos de 15 min.</div></li></ul></div>
                 <div class="bg-[#FAF7F2] p-4 rounded-xl"><div class="chart-container"><canvas id="energyChart"></canvas></div></div>
@@ -231,10 +244,15 @@
                 { name: "Introducción a las artes visuales", desc: "¿Qué significa ser artista hoy? Exploración general de la escena." },
                 { name: "Historia del arte medieval", desc: "De las cavernas al gótico. Entender el pasado visual." }
             ] },
-            2: { title: "Semestre 2", color: "#A3B1A6", subjects: [{ name: "Dibujo II, espacialidad", desc: "Perspectiva." }, { name: "Fotografía básica", desc: "La luz como material." }] },
-            3: { title: "Semestre 3", color: "#A3B1A6", subjects: [{ name: "Dibujo III, figura humana", desc: "Anatomía." }] },
-            4: { title: "Semestre 4", color: "#A3B1A6", subjects: [{ name: "Dibujo IV", desc: "Expresividad." }] },
-            5: { title: "Semestre 5", color: "#D98A6C", subjects: [] }, 6: { title: "Semestre 6", color: "#D98A6C", subjects: [] }, 7: { title: "Semestre 7", color: "#D98A6C", subjects: [] }, 8: { title: "Semestre 8", color: "#D98A6C", subjects: [] }, 9: { title: "Semestre 9", color: "#2C332F", subjects: [] }, 10: { title: "Semestre 10", color: "#2C332F", subjects: [] }
+               2: { title: "Semestre 2", color: "#A3B1A6", subjects: [{ name: "Dibujo II, espacialidad", desc: "Perspectiva." }, { name: "Fotografía básica", desc: "La luz como material." }, { name: "Video básico", desc: "Imagen en movimiento." }, { name: "Fundamentos de bidimensionalidad", desc: "Pintura y color." }, { name: "Estética antigua", desc: "Filosofía de la belleza." }, { name: "Apreciación artes visuales", desc: "Análisis crítico." }]},
+            3: { title: "Semestre 3", color: "#A3B1A6", subjects: [{ name: "Dibujo III, figura humana", desc: "Anatomía ósea y muscular." }, { name: "Fotografía profundización", desc: "Revelado y técnicas." }, { name: "Historia del Arte Moderno", desc: "Impresionismo y Vanguardias." }, { name: "Taller Tridimensionalidad II", desc: "Escultura en nuevos materiales." }, { name: "Institucional I", desc: "Humanidades Javeriana." }]},
+            4: { title: "Semestre 4", color: "#A3B1A6", subjects: [{ name: "Dibujo IV, cuerpo expresivo", desc: "Expresividad anatómica." }, { name: "Fotografía avanzada", desc: "Creación de series fotográficas." }, { name: "Historia Arte Contemporáneo", desc: "El arte conceptual de hoy." }, { name: "Teoría del Arte", desc: "Textos críticos de soporte." }, { name: "Institucional II", desc: "Humanidades." }]},
+            5: { title: "Semestre 5 (Inicio Énfasis)", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis I", desc: "Tú eliges: Plástica (pintura/escultura), Audiovisual (cine/foto) o Gráfica (grabado/ilustración)." }, { name: "Electivas de Línea", desc: "Materias especializadas de tu rama." }, { name: "Seminario Investigación I", desc: "Cómo armar un proyecto grande." }, { name: "Estética Contemporánea", desc: "Filosofía del S. XXI." }]},
+            6: { title: "Semestre 6", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis II", desc: "Proyectos más complejos y libres." }, { name: "Electivas Interdisciplinares", desc: "Ver materias en Arquitectura o Diseño." }, { name: "Gestión Cultural", desc: "Cómo funciona el mercado del arte." }]},
+            7: { title: "Semestre 7", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis III", desc: "Tutorías de tu propia obra personal." }, { name: "Seminario Investigación II", desc: "Perfil de proyecto de grado." }, { name: "Electivas de Contexto", desc: "Teoría de apoyo." }]},
+            8: { title: "Semestre 8", color: "#D98A6C", subjects: [{ name: "Taller de Énfasis IV", desc: "Obra final del ciclo." }, { name: "Diseño de Portafolio", desc: "Preparación para el mundo real." }, { name: "Museografía", desc: "Curaduría y montaje de exposiciones físicas." }]},
+            9: { title: "Semestre 9", color: "#2C332F", subjects: [{ name: "Proyecto de Grado I", desc: "Dedicación exclusiva a tu tesis/exposición personal." }, { name: "Práctica Profesional I", desc: "Trabajo real en galerías, museos o estudios en Bogotá." }]},
+            10: { title: "Semestre 10", color: "#2C332F", subjects: [{ name: "Proyecto de Grado II", desc: "Escritura de documento y exhibición final." }, { name: "Práctica Profesional II", desc: "Inmersión laboral total." }]}
         };
         function showSemester(num) {
             document.querySelectorAll('.semester-btn').forEach(btn => btn.classList.remove('active'));
@@ -249,13 +267,19 @@
         const prepData = {
             dibujo: { 
                 title: "Dibujo I, fundamentos", icon: "✏️", 
-                goal: "Quitarle el miedo a la hoja en blanco.", 
-                plan: [
-                    { week: "Semanas 1-2", task: "<strong>Profanar la Bitácora:</strong> Ensúciala con café, pega recortes, raya sin sentido." },
-                    { week: "Semanas 3-5", task: "<strong>Bocetos en movimiento:</strong> Dibuja gente en cafés en máximo 1 minuto." },
-                    { week: "Semanas 6-8", task: "<strong>Texturas ciegas:</strong> Dibuja objetos mirando el objeto, no el papel." }
-                ],
+                pain: "Pánico a la hoja en blanco y a que las manos se sientan 'torpes'. Miedo a que alguien evalúe tus primeros trazos.",
+                strategy: "Kilometraje de Trazos y Cero Borrador",
                 temario: [
+                    "Encontrar tu bitácora ideal y acostumbrarse a cargarla siempre.",
+                    "Desbloquear el movimiento del codo y el hombro.",
+                    "Acostumbrar al cerebro a hacer dibujos rápidos y 'feos'."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: Compra y Profanación", action: "Compra una libreta sin rayas y un lápiz 4B. Raya la primera hoja entera de negro, ensúciala con tierra o café. Quítale lo sagrado y el miedo a arruinarla." },
+                    { phase: "Semanas 4-6: Dibujo de Espionaje", action: "Siéntate en un café y dibuja a la gente rápido (en 30 seg) sin que se den cuenta. Usa ESFERO NEGRO para obligarte a no borrar nunca." },
+                    { phase: "Semanas 7-8: Manchas en Casa", action: "Compra un carboncillo o tinta china barata. En tu mesa, dibuja objetos cotidianos pero SIN usar líneas; dales forma solo haciendo manchas grises y negras." }
+                ],
+                temasSemestre: [
                     { title: "Línea, punto, mancha y textura", desc: "Elementos básicos del lenguaje gráfico. Aprendes a controlar la presión del lápiz y a generar diferentes calidades de trazo." },
                     { title: "Dibujo de observación (bodegón)", desc: "Entrenas tu ojo para copiar fielmente la realidad. Trabajas con objetos cotidianos, estudiando proporciones y luces." },
                     { title: "Perspectiva básica y proporción", desc: "Reglas para representar la profundidad y el tamaño relativo de los objetos en el plano." },
@@ -267,12 +291,19 @@
             },
             electronicas: { 
                 title: "Introducción a las artes electrónicas", icon: "💻", 
-                goal: "Perder el miedo al software.", 
-                plan: [
-                    { week: "Semanas 1-4", task: "<strong>Instalación:</strong> Descarga GIMP o Krita, ábrelo y guarda un archivo." },
-                    { week: "Semanas 5-8", task: "<strong>El botón equivocado:</strong> Aplica filtros al azar, explora sin miedo." }
-                ],
+                pain: "Frustración tecnológica. Sentir que los programas de diseño son incomprensibles y que la tecnología te va a atropellar.",
+                strategy: "Cero Perfeccionismo Digital, Pura Exploración",
                 temario: [
+                    "Entender la interfaz básica de un software sin abrumarse con 1000 botones.",
+                    "Aceptar que el 'Ctrl+Z' es tu mejor amigo.",
+                    "Empezar a ver la pantalla como un lienzo, no como una hoja de cálculo."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: El botón equivocado", action: "Descarga un programa libre (Krita, GIMP). Abre un archivo, usa filtros al azar y descifra empíricamente qué rompe la imagen antes de leer teoría." },
+                    { phase: "Semanas 4-6: Copia y Pausa", action: "Busca un tutorial de 10 minutos en YouTube y síguelo paso a paso, pausando cada 30 segundos. Es entrenar la memoria muscular, no la teoría." },
+                    { phase: "Semanas 7-8: Intervención Salvaje", action: "Trata de intervenir digitalmente una de las fotos que tomaste con el celular en la calle. No tiene que quedar bien, solo extraña o diferente." }
+                ],
+                temasSemestre: [
                     { title: "El computador como medio artístico", desc: "Introducción a la historia y conceptos del arte electrónico. ¿Qué hace diferente crear con código o software?" },
                     { title: "Edición de imagen raster (GIMP/Krita)", desc: "Manejo de capas, pinceles, filtros y corrección de color. Creación de imágenes digitales." },
                     { title: "Introducción al audio digital", desc: "Grabación, edición y mezcla básica de sonido para proyectos multimedia." },
@@ -284,12 +315,19 @@
             },
             tridi: { 
                 title: "Fundamentos de la tridimensionalidad", icon: "🧱", 
-                goal: "Despertar el sentido táctil.", 
-                plan: [
-                    { week: "Semanas 1-3", task: "<strong>Origami arquitectónico:</strong> Dobla papel para que se sostenga solo." },
-                    { week: "Semanas 4-8", task: "<strong>Plastilina a ciegas:</strong> Moldea formas mientras ves TV." }
-                ],
+                pain: "Estar tan acostumbrada a las pantallas 2D que el cerebro se resiste a calcular espacios físicos, peso y gravedad.",
+                strategy: "Gimnasia Táctil Diaria",
                 temario: [
+                    "Volver a conectar las manos con materiales físicos (arcilla, papel, alambre).",
+                    "Entender que la gravedad es un material de trabajo más.",
+                    "Visualizar un objeto desde todos sus ángulos antes de construirlo."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: Moldeo Ciego", action: "Compra plastilina. Mientras ves una serie, sin mirar tus manos, intenta moldear un cubo o una esfera perfecta solo usando el tacto." },
+                    { phase: "Semanas 4-6: Origami Arquitectónico", action: "Busca tutoriales de pliegues de papel en YouTube para entender cómo un material plano, al ser doblado, adquiere estructura para sostenerse a sí mismo." },
+                    { phase: "Semanas 7-8: Torres sin Pegante", action: "Construye una estructura lo más alta posible usando solo materiales de casa (cajas, naipes) sin usar pegamento. Observa dónde y por qué falla al caerse." }
+                ],
+                temasSemestre: [
                     { title: "Del plano al volumen", desc: "Ejercicios para entender cómo una superficie bidimensional puede convertirse en objeto tridimensional." },
                     { title: "Materiales de construcción (cartón, madera, alambre)", desc: "Propiedades, cortes, uniones y ensamblajes básicos para maquetas y esculturas." },
                     { title: "Yeso y moldes", desc: "Técnicas de vaciado y reproducción. Creación de piezas a partir de moldes." },
@@ -301,12 +339,19 @@
             },
             gramatica: { 
                 title: "Gramática visual", icon: "👁️", 
-                goal: "Entender las reglas de la composición.", 
-                plan: [
-                    { week: "Semanas 1-4", task: "<strong>Cacería fotográfica:</strong> Toma fotos buscando líneas diagonales, contraste de color." },
-                    { week: "Semanas 5-8", task: "<strong>Disección de cine:</strong> Pausa una película y calca las líneas principales." }
-                ],
+                pain: "Sentir que una imagen se ve 'rara' o 'fea' pero no tener las palabras técnicas exactas para justificar el porqué.",
+                strategy: "Disección Anatómica de Imágenes",
                 temario: [
+                    "Descomponer cualquier imagen en puntos, líneas y planos.",
+                    "Entender el peso visual: por qué el ojo se va inevitablemente a una esquina de la foto.",
+                    "Dominar el ritmo y el contraste sin tocar un lápiz."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: Cacería de Líneas", action: "Sal a la calle y toma fotos con tu celular buscando intencionalmente solo líneas diagonales, o solo composiciones en forma de triángulo." },
+                    { phase: "Semanas 4-6: Disección de Cine", action: "Pausa tus películas favoritas en escenas hermosas. Pon un papel mantequilla sobre la pantalla y calca solo las líneas geométricas principales." },
+                    { phase: "Semanas 7-8: Collage Desequilibrado", action: "Toma revistas viejas, recorta elementos y pégalos en tu bitácora intentando crear una composición donde todo el 'peso' esté recargado en un solo lado." }
+                ],
+                temasSemestre: [
                     { title: "Punto, línea, plano", desc: "Los elementos más simples de toda imagen. Cómo generan tensión, dirección y superficie." },
                     { title: "Forma y contorno", desc: "Diferencias entre forma positiva y negativa. La silueta y su poder comunicativo." },
                     { title: "Color: teoría básica", desc: "Círculo cromático, colores primarios, secundarios, complementarios. Armonías y contrastes." },
@@ -317,13 +362,20 @@
                 ]
             },
             escrituras: { 
-                title: "Escrituras en el contexto de las artes visuales", icon: "📝", 
-                goal: "Escribir sin parálisis.", 
-                plan: [
-                    { week: "Semanas 1-4", task: "<strong>Diario visual:</strong> Escribe un párrafo a mano sobre lo que sientes al ver una película." },
-                    { week: "Semanas 5-8", task: "<strong>Descripción urbana:</strong> Describe una plaza usando los 5 sentidos." }
-                ],
+                title: "Escrituras en el contexto de las artes", icon: "📝", 
+                pain: "Pánico a los textos académicos de la universidad. Sentir que no sabes poner en palabras elaboradas lo que sientes al ver una imagen.",
+                strategy: "Micro-Reseñas de la Vida Diaria",
                 temario: [
+                    "Recuperar el ritmo de lectura sin estresarse con PDFs pesados.",
+                    "Escribir opiniones de manera fluida, sin pensar en gramática o normas APA todavía.",
+                    "Aprender a sintetizar ideas complejas en un solo párrafo."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: Lectura Ligera", action: "Lee artículos cortos sobre diseño o fotografía en revistas web (Cartel Urbano, Bacánika). Recupera el gusto de leer sin presión académica." },
+                    { phase: "Semanas 4-6: Diario de Consumo (Post-its)", action: "Por cada película o expo que veas, escribe UN párrafo en un post-it: ¿Qué te gustó? ¿Qué odiaste visualmente? Construye una postura crítica veloz." },
+                    { phase: "Semanas 7-8: Traducción Verbal", action: "Lee la sinopsis de una obra en internet y oblígate a explicársela a un amigo en menos de 1 minuto usando exclusivamente palabras coloquiales." }
+                ],
+                temasSemestre: [
                     { title: "La relación palabra-imagen en el arte", desc: "Recorrido histórico: desde los manuscritos ilustrados hasta el arte conceptual basado en texto." },
                     { title: "Bitácora y escritura del proceso", desc: "Cómo llevar un diario de trabajo que documente tus avances, dudas y hallazgos creativos." },
                     { title: "Poesía visual y caligrama", desc: "Juegos donde las palabras forman imágenes y las imágenes contienen palabras." },
@@ -335,13 +387,19 @@
             },
             intro: { 
                 title: "Introducción a las artes visuales", icon: "🎨", 
-                goal: "Conocer el circuito de arte en Bogotá.", 
-                plan: [
-                    { week: "Semanas 1-3", task: "<strong>San Felipe:</strong> Camina por galerías, entra sin presión." },
-                    { week: "Semanas 4-6", task: "<strong>MAMBO:</strong> Observa cómo el curador organiza las salas." },
-                    { week: "Semanas 7-8", task: "<strong>Podcasts de arte:</strong> Escucha mientras te transportas." }
-                ],
+                pain: "El síndrome de la impostora frente al arte contemporáneo. Esa sensación de: '¿Por qué este vaso medio vacío en el suelo es arte?'",
+                strategy: "Inmersión en el Ecosistema Bogotano",
                 temario: [
+                    "Aceptar que el arte de hoy se trata más sobre ideas y conceptos que sobre estética perfecta.",
+                    "Conocer cómo se mueve el circuito del arte (Galerías comerciales vs Museos vs Espacios independientes).",
+                    "Saber que es perfectamente válido decir 'esto no me gusta' o 'no lo entiendo'."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: Desmitificación en Video", action: "Busca documentales ligeros sobre arte contemporáneo. El objetivo es entender que el arte actual a veces es absurdo por diseño. Ríete de él antes de tratar de entenderlo." },
+                    { phase: "Semanas 4-6: Tour de Galerías (San Felipe)", action: "Un sábado ve al Distrito Artístico de San Felipe. Entra a galerías gratis. Solo observa qué materiales extraños están usando los artistas hoy en día en Bogotá." },
+                    { phase: "Semanas 7-8: Coleccionista de la Calle", action: "Toma fotos de cosas aleatorias en la calle que te parezcan interesantes: un grafiti rayado, luz entrando por una ventana. Crea un álbum en tu celular llamado 'Mi Museo'." }
+                ],
+                temasSemestre: [
                     { title: "¿Qué es el arte hoy? Definiciones contemporáneas", desc: "Ampliación del concepto: arte relacional, efímero, participativo, digital." },
                     { title: "Los agentes del sistema del arte", desc: "Artistas, curadores, galeristas, críticos, coleccionistas, museos: cómo interactúan." },
                     { title: "Galerías, museos y centros culturales", desc: "Diferencias, funciones y cómo visitarlos para aprender." },
@@ -353,13 +411,19 @@
             },
             historia: { 
                 title: "Historia del arte medieval", icon: "🏛️", 
-                goal: "Absorber la narrativa visual sin textos densos.", 
-                plan: [
-                    { week: "Semanas 1-4", task: "<strong>YouTube histórico:</strong> Mira canales como 'Smarthistory'." },
-                    { week: "Semanas 5-6", task: "<strong>El Muro Visual:</strong> Pega imágenes en orden cronológico." },
-                    { week: "Semanas 7-8", task: "<strong>Visita local:</strong> Museo del Oro y Museo Nacional." }
-                ],
+                pain: "Miedo a llegar a la primera clase y sentir que todos saben de arte o historia menos tú. Terror a aprenderse cientos de fechas de memoria.",
+                strategy: "Consumo de Pop-Culture y Mapeo Visual",
                 temario: [
+                    "Reconocer las eras medievales, góticas y bizantinas por cómo se ven visualmente, no por sus años exactos.",
+                    "Entender que el arte medieval era magia, religión e instrucción, no simple decoración.",
+                    "Perderle el respeto y el miedo a los museos y las iglesias históricas."
+                ],
+                workflow: [
+                    { phase: "Semanas 1-3: Consumo Relajado (YouTube)", action: "Busca canales como 'Smarthistory' o 'Ter'. Mira videos sobre las catedrales góticas y el arte bizantino mientras desayunas. Solo empápate de la estética de la época." },
+                    { phase: "Semanas 4-6: Expedición Local", action: "Haz salidas al centro de Bogotá (ej. Museo Colonial, iglesias antiguas). Concéntrate en observar el pan de oro, las esculturas religiosas y cómo se siente el espacio físico." },
+                    { phase: "Semanas 7-8: El Muro del Tiempo", action: "Imprime imágenes de internet. En una pared de tu cuarto, pega en orden 10 imágenes de cosas medievales que te gustaron. Ese muro será tu mapa para agosto." }
+                ],
+                temasSemestre: [
                     { title: "Arte paleocristiano y simbología", desc: "Primeras imágenes cristianas en las catacumbas. Uso de símbolos como el pez o el buen pastor." },
                     { title: "Arte bizantino: mosaicos y arquitectura", desc: "Iglesias de planta central, cúpulas y mosaicos dorados que representan la majestad divina." },
                     { title: "Arte prerrománico en Europa", desc: "Arte de los reinos germánicos y la época carolingia. Mezcla de tradiciones." },
@@ -380,29 +444,83 @@
             const data = prepData[key];
             let html = `
                 <div class="fade-in">
+                    <!-- Cabecera -->
                     <div class="flex items-center mb-6 border-b border-[#EAE1D3] pb-4">
                         <span class="text-4xl mr-4">${data.icon}</span>
-                        <div><h3 class="text-2xl font-bold font-serif text-[#2C332F]">${data.title}</h3><p class="text-sm text-[#D98A6C] font-bold uppercase tracking-wider mt-1">Plan de Verano</p></div>
+                        <div>
+                            <h3 class="text-2xl font-bold font-serif text-[#2C332F]">${data.title}</h3>
+                            <p class="text-sm text-[#D98A6C] font-bold uppercase tracking-wider mt-1">Plan de Adaptación</p>
+                        </div>
                     </div>
-                    <div class="bg-[#FAF7F2] p-4 rounded-lg border-l-4 border-[#A3B1A6] mb-8 text-[#5C6661]"><strong>Tu único objetivo:</strong> ${data.goal}</div>
-                    <div class="space-y-6 mb-12">
-                        ${data.plan.map(step => `
-                            <div class="flex">
-                                <div class="w-32 flex-shrink-0 pt-1"><span class="bg-[#A3B1A6] text-white text-xs font-bold px-3 py-1.5 rounded-full">${step.week}</span></div>
-                                <div class="text-[#3A403C] text-sm md:text-base border-l-2 border-[#D0C9BE] pl-5 pb-2">${step.task}</div>
+                    
+                    <!-- Resumen del Problema -->
+                    <div class="mb-8 bg-[#FAF7F2] p-5 rounded-lg border-l-4 border-[#D98A6C]">
+                        <p class="text-sm text-[#5C6661] uppercase tracking-wider font-bold mb-2">Ansiedad Previa Habitual:</p>
+                        <p class="text-[#3A403C] italic mb-3">"${data.pain}"</p>
+                        <p class="text-sm text-[#5C6661] uppercase tracking-wider font-bold mb-1">Tu Antídoto:</p>
+                        <p class="text-[#D98A6C] font-bold text-lg">${data.strategy}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Diagrama de Mapa Mental de la Materia -->
+                        <div>
+                            <h4 class="text-xl font-bold text-[#2C332F] mb-4 flex items-center">
+                                <span class="text-[#D98A6C] mr-2">&#129424;</span> Mapa de Enfoque Visual
+                            </h4>
+                            <div class="bg-[#FAF7F2] p-5 rounded-xl border border-[#EAE1D3]">
+                                <!-- Nodo Central -->
+                                <div class="text-center mb-4 relative">
+                                    <div class="inline-block bg-[#2C332F] text-[#FAF7F2] text-sm px-4 py-2 rounded-lg font-bold shadow-md relative z-10">
+                                        Núcleo: ${data.title.split(',')[0].split(':')[0]}
+                                    </div>
+                                    <div class="h-6 border-l-2 border-[#A3B1A6] mx-auto w-0 -mt-1 relative z-0"></div>
+                                </div>
+                                
+                                <!-- Ramas de Temas -->
+                                <div class="relative border-l-2 border-[#A3B1A6] ml-4 md:ml-8 space-y-4 pb-2">
+                                    ${data.temario.map((tema, idx) => `
+                                        <div class="relative pl-6">
+                                            <!-- Línea conectora horizontal -->
+                                            <div class="absolute -left-[2px] top-5 w-6 border-t-2 border-[#A3B1A6]"></div>
+                                            <!-- Nodo de Tema -->
+                                            <div class="bg-white p-4 rounded-xl border border-[#D0C9BE] shadow-sm relative z-10 hover:border-[#D98A6C] transition-all">
+                                                <span class="text-xs font-bold text-[#D98A6C] uppercase tracking-wider block mb-1">Concepto ${idx + 1}</span>
+                                                <p class="text-[#3A403C] text-sm leading-relaxed">${tema}</p>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
-                        `).join('')}
+                        </div>
+
+                        <!-- Estructura Semanal / Plan Entrenamiento -->
+                        <div>
+                            <h4 class="text-xl font-bold text-[#2C332F] mb-4 flex items-center">
+                                <span class="text-[#D98A6C] mr-2">&#9881;</span> Plan de Entrenamiento
+                            </h4>
+                            <div class="space-y-4">
+                                ${data.workflow.map(step => `
+                                    <div class="bg-white border border-[#EAE1D3] p-4 rounded-xl shadow-sm hover:border-[#D98A6C] transition-colors">
+                                        <h5 class="font-bold text-[#D98A6C] text-sm mb-2">${step.phase}</h5>
+                                        <p class="text-[#4A524D] text-sm leading-relaxed">${step.action}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
                     </div>
-                    <div class="border-t-2 border-[#EAE1D3] pt-8 mt-4">
-                        <h4 class="text-xl font-bold font-serif text-[#2C332F] mb-4 flex items-center gap-2">
-                            <span>🗺️</span> Mapa de contenidos del semestre
+
+                    <!-- NUEVO BLOQUE: Temario del Semestre Universitario -->
+                    <div class="mt-10 pt-8 border-t border-[#EAE1D3]">
+                        <h4 class="text-xl font-bold text-[#2C332F] mb-4 flex items-center">
+                            <span class="text-[#8DA0A6] mr-2">🗺️</span> Temario del Semestre Universitario (Lo que verás en la U)
                         </h4>
-                        <p class="text-sm text-[#5C6661] mb-5">Estos son los temas principales que verás en ${data.title} durante el primer semestre, con una breve explicación de cada uno:</p>
+                        <p class="text-sm text-[#5C6661] mb-5">Estos son los temas principales que verás durante el primer semestre, con una breve explicación de cada uno:</p>
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            ${data.temario.map(tema => `
+                            ${data.temasSemestre.map(ts => `
                                 <div class="topic-card">
-                                    <div class="topic-title">📘 ${tema.title}</div>
-                                    <div class="topic-desc">${tema.desc}</div>
+                                    <div class="topic-title">📘 ${ts.title}</div>
+                                    <div class="topic-desc">${ts.desc}</div>
                                 </div>
                             `).join('')}
                         </div>
